@@ -31,11 +31,11 @@ public class LineItems {
 	
 	private double price;
 	
-	private double TotalPrice;
+	private double TotalPrice=price*quentity;
 	
 //	@ManyToOne
 //	private Cart cart;
-
+//
 
 
 }
