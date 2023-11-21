@@ -19,10 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "CART")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class Cart {
 
 	@Id
@@ -41,6 +38,76 @@ public class Cart {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<LineItems>lineItems;
+	
+	
+	
+
+	public Long getCartId() {
+		return CartId;
+	}
+	
+	
+
+	public Cart(Long cartId, Long customerId, double totalPrice, String cartStatus, Set<LineItems> lineItems) {
+		super();
+		CartId = cartId;
+		CustomerId = customerId;
+		TotalPrice = totalPrice;
+		CartStatus = cartStatus;
+		this.lineItems = lineItems;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Cart [CartId=" + CartId + ", CustomerId=" + CustomerId + ", TotalPrice=" + TotalPrice + ", CartStatus="
+				+ CartStatus + ", lineItems=" + lineItems + "]";
+	}
+
+
+
+	public void setCartId(Long cartId) {
+		CartId = cartId;
+	}
+
+	public Long getCustomerId() {
+		return CustomerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		CustomerId = customerId;
+	}
+
+	public double getTotalPrice() {
+		return TotalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		TotalPrice = totalPrice;
+	}
+
+	public String getCartStatus() {
+		return CartStatus;
+	}
+
+	public void setCartStatus(String cartStatus) {
+		CartStatus = cartStatus;
+	}
+
+	public Set<LineItems> getLineItems() {
+		return lineItems;
+	}
+
+	public void setLineItems(Set<LineItems> lineItems) {
+		this.lineItems = lineItems;
+	}
+
+	public Cart() {
+		super();
+	}
+	
+	
 }
 
 
