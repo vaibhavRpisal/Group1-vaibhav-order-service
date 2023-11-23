@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Dto.ProductDTO;
+import com.client.ProductClient;
 import com.enitities.Cart;
 import com.repositories.CartRepository;
 import com.service.CartServiceImpl;
@@ -27,14 +29,12 @@ public class CartController {
 
 	@Autowired
 	private CartServiceImpl cartservice;
-	
+
+	@Autowired
+	private ProductClient productClient;
 
 	
-
-//	@GetMapping
-//	public String hi(){
-//		return "hello";
-//	}
+	
 	
 	@PostMapping
 	public ResponseEntity<Cart> AddCart(@RequestBody Cart cart) {
@@ -49,7 +49,8 @@ public class CartController {
 	
 	@GetMapping("/{cartId}")
 	public Cart cartById(@PathVariable Long cartId) {
-		return	cartservice.findCartById(cartId) ; 
+		
+	        return	cartservice.findCartById(cartId) ; 
 	}
 	
 	@DeleteMapping("/{cartId}")

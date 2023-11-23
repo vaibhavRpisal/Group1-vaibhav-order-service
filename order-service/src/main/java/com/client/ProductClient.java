@@ -1,17 +1,22 @@
 package com.client;
 
+import java.util.List;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.Dto.ProductDTO;
 
-@FeignClient(name="product-service", url="http://localhost:9092/api")
+@FeignClient(name = "product-service", url = "http://localhost:9092/api")
 public interface ProductClient {
 
 	@GetMapping("/products/{id}")
-	ProductDTO getProductById(@PathVariable Long id); 
+	ProductDTO getProductById(@PathVariable Long id);
 
 	@GetMapping("/products/{productKey}")
-	ProductDTO getProductByProductKey(@PathVariable Long productKey); 
+	ProductDTO getProductByProductKey(@PathVariable String productKey);
+
+	@GetMapping("/products")
+	List<ProductDTO> getAllProducts();
 }

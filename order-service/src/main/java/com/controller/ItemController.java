@@ -29,37 +29,37 @@ public class ItemController {
 	@Autowired
 	private CartServiceImpl cartService;
 	
+
 	@PostMapping
-	public ResponseEntity<LineItems> AddItems(@RequestBody LineItems lineItems ) {
-		
+	public ResponseEntity<LineItems> AddItems(@RequestBody LineItems lineItems) {
+
 		ProductDTO products = new ProductDTO();
-		lineItems.setProductKey(products.getProductKey()); 
-		lineItems.setPrice(products.getPrice());
-		
+		lineItems.setProductKey(products.getProductKey());
 		LineItems saveItems = itemsService.save(lineItems);
-		
 		return new ResponseEntity<>(saveItems, HttpStatus.OK);
 	}
-	
+
 	@GetMapping
-	public List<LineItems> getLineitems(){
-		return	itemsService.getLineItems() ; 
+	public List<LineItems> getLineitems() {
+		return itemsService.getLineItems();
 	}
-	
+
 	@GetMapping("/{LineItemsId}")
 	public LineItems LineItemById(@PathVariable Long lineItems) {
-		return	itemsService.findLineItemsId(lineItems) ; 
+		return itemsService.findLineItemsId(lineItems);
 	}
-	 @GetMapping("/cart/{cartId}")
-	    public LineItems getLineItemsByCartId(@PathVariable Long CartId) {
-	        return itemsService.findItemsByCartId(CartId);
-	        
-	    }
+
+	@GetMapping("/cart/{cartId}")
+	public LineItems getLineItemsByCartId(@PathVariable Long CartId) {
+		return itemsService.findItemsByCartId(CartId);
+
+	}
+
 	@DeleteMapping("/{LineItemsId}")
 	public LineItems deleteLineItems(@PathVariable Long LineItemsId) {
 		LineItems Items = itemsService.findLineItemsId(LineItemsId);
 		itemsService.deleteLineItems(Items);
 		return Items;
 	}
-	
+
 }

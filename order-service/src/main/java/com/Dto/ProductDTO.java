@@ -8,31 +8,14 @@ public class ProductDTO {
 	private String productKey;
 	private String productName;
 	private String productDescription;
-	private double price;
+
 	public ProductDTO() {
 		super();
 	}
 
-	
-
-	public ProductDTO(Long id, String productKey, String productName, String productDescription, double price) {
-		super();
-		this.id = id;
-		this.productKey = productKey;
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.price = price;
-	}
 
 
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
 
 	public Long getId() {
 		return id;

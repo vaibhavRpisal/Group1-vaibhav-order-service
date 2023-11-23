@@ -36,7 +36,6 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public LineItems findLineItemsId(Long LineItemsId) {
-
 		return itemRepo.findById(LineItemsId).get();
 	}
 
@@ -47,8 +46,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public LineItems findItemsByCartId(Long CartId) {
-		
+	public LineItems findItemsByCartId(Long CartId) {		
 		return itemRepo.findById(CartId).get();
 	}
 

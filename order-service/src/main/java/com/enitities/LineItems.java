@@ -19,12 +19,9 @@ public class LineItems {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	private Long LineItemsId;
-	
 	 @Column(name = "PRODUCT_ID")
 	private String ProductKey;
-	
 	private int quentity;
-	
 	private double price;
 	
 	
