@@ -23,30 +23,25 @@ import lombok.NoArgsConstructor;
 public class Cart {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="cart_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "cart_id")
 	private Long CartId;
-	
+
 	@Column(name = "CUSTOMER_ID")
 	private Long CustomerId;
-	
+
 	@Column(name = "TOTAL_PRICE")
 	private double TotalPrice;
-	
-	@Column(name="CART_STATUS")
+
+	@Column(name = "CART_STATUS")
 	private String CartStatus;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<LineItems>lineItems;
-	
-	
-	
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cart" )
+	private Set<LineItems> lineItems;
 
 	public Long getCartId() {
 		return CartId;
 	}
-	
-	
 
 	public Cart(Long cartId, Long customerId, double totalPrice, String cartStatus, Set<LineItems> lineItems) {
 		super();
@@ -57,15 +52,11 @@ public class Cart {
 		this.lineItems = lineItems;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Cart [CartId=" + CartId + ", CustomerId=" + CustomerId + ", TotalPrice=" + TotalPrice + ", CartStatus="
 				+ CartStatus + ", lineItems=" + lineItems + "]";
 	}
-
-
 
 	public void setCartId(Long cartId) {
 		CartId = cartId;
@@ -106,8 +97,5 @@ public class Cart {
 	public Cart() {
 		super();
 	}
-	
-	
+
 }
-
-

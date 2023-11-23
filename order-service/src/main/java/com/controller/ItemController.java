@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Dto.ProductDTO;
 import com.enitities.Cart;
 import com.enitities.LineItems;
 import com.enitities.ordering;
+import com.service.CartServiceImpl;
 import com.service.ItemServiceImpl;
 
 @RequestMapping("/items")
@@ -24,10 +26,18 @@ public class ItemController {
 
 	@Autowired
 	private ItemServiceImpl itemsService;
+	@Autowired
+	private CartServiceImpl cartService;
 	
 	@PostMapping
 	public ResponseEntity<LineItems> AddItems(@RequestBody LineItems lineItems ) {
+		
+		ProductDTO products = new ProductDTO();
+		lineItems.setProductKey(products.getProductKey()); 
+		lineItems.setPrice(products.getPrice());
+		
 		LineItems saveItems = itemsService.save(lineItems);
+		
 		return new ResponseEntity<>(saveItems, HttpStatus.OK);
 	}
 	
@@ -40,7 +50,11 @@ public class ItemController {
 	public LineItems LineItemById(@PathVariable Long lineItems) {
 		return	itemsService.findLineItemsId(lineItems) ; 
 	}
-	
+	 @GetMapping("/cart/{cartId}")
+	    public LineItems getLineItemsByCartId(@PathVariable Long CartId) {
+	        return itemsService.findItemsByCartId(CartId);
+	        
+	    }
 	@DeleteMapping("/{LineItemsId}")
 	public LineItems deleteLineItems(@PathVariable Long LineItemsId) {
 		LineItems Items = itemsService.findLineItemsId(LineItemsId);

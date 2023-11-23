@@ -11,4 +11,7 @@ public interface ItemService {
 	public List<LineItems> getLineItems();
 	public LineItems findLineItemsId(Long LineItemsId);
 	public LineItems deleteLineItems(LineItems lineItems);
+	public LineItems findItemsByCartId(Long CartId);
+
+
 }

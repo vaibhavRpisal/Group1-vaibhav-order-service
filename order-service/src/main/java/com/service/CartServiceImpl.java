@@ -24,7 +24,7 @@ public class CartServiceImpl implements Cart_Service {
 	
 	@Override
 	public Cart save(Cart cart) {
-		cartRepo.save(cart);
+		cart = cartRepo.save(cart);		
 		return cart;
 	}
 
@@ -37,9 +37,9 @@ public class CartServiceImpl implements Cart_Service {
 
 
 	@Override
-	public Cart findCartById(Long id) {
+	public Cart findCartById(Long cartId) {
 	
-		return cartRepo.findById(id).get();
+		return cartRepo.findById(cartId).get();
 
 	}
 
